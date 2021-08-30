@@ -1,0 +1,196 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" type="text/css" href="estilo1.css" media="screen">
+        <title>Formulário JobsNET</title>
+    </head>
+
+    <body>  
+
+        <div>
+            <h1 id="titulo">Cadastro de currículo</h1>
+            <p id="subtitulo">Complete suas informações abaixo</p>
+            <br>
+        </div>
+
+        <h2>Informações preliminares</h2>
+        <br>
+        <form>
+
+            <fieldset class="grupo">
+                
+                <div class="campo">
+                    <label for="nome">Nome completo</label>
+                    <input type="text" name="nome" id="nome" required>
+                </div>
+
+               
+                <div class="campo">
+                    <label for="cargo">Cargo pretendido</label>
+                    <input type="text" name="cargo" id="cargo">
+                </div>
+                <div class="campo">
+                    <header>Data de nascimento</header>
+                    <input type="date" nome = "data" min="1900-01-01" max="2005-12-31" required>
+                </div>
+                <div class="campo">
+                <header>Estado civil </header> 
+                 <select>
+                     <option selected disabled value="" ></option>
+                     <option>Solteiro</option>
+                     <option>Casado</option>
+                     <option>União estável</option>
+                     <option>Divorciado</option>
+                 </select>
+
+             </div>
+             
+             <div class="campo">
+                <header>Gênero</header>
+                 <select>
+                     <option selected disabled value=""></option>
+                     <option>Homem</option>
+                     <option>Mulher</option>
+                     <option>Não binário</option>
+                     <option>Outro</option>
+                 </select>
+                 
+              </div>
+
+            </fieldset> 
+
+            
+        
+                
+        <div class="campo">
+                <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <br>
+        
+	    <h2>Endereço</h2>
+        <br>
+        <form>
+            
+            <label for="cep">CEP</label>
+            <input id="cep" placeholder="Somente números" type="number" required/>
+            <label for="logradouro">Logradouro</label>
+            <input id="logradouro" type="text" required/>
+            <label for="numero">Número</label>
+            <input id="numero" type="number" required/>
+            <label for="complemento">Complemento</label>
+            <input id="complemento" type="text"/>
+            <label for="bairro">Bairro</label>
+            <input id="bairro" type="text" required/>
+            <label for="uf">Estado</label>
+            <select id="uf">
+                <option selected disabled value=""></option>
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Ceará</option>
+                <option value="DF">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
+            </select>
+        </form>
+        
+        <script type="text/javascript">
+            $("#cep").focusout(function(){
+                
+                $.ajax({
+                    
+                    url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/unicode/',
+                    
+                    dataType: 'json',
+                    
+                    success: function(resposta){
+                        
+                        $("#logradouro").val(resposta.logradouro);
+                        $("#complemento").val(resposta.complemento);
+                        $("#bairro").val(resposta.bairro);
+                        $("#cidade").val(resposta.localidade);
+                        $("#uf").val(resposta.uf);
+                        $("#numero").focus();
+                    }
+                });
+            });
+        </script>
+        <br>
+        <h2>Contato</h2>
+        <br>
+            <fieldset class="grupo">
+                <div class="campo"> 
+                    <label for="telefone">Telefone fixo</label>
+                    <input type="number" placeholder="ddd + dígitos">
+                </div>    
+                <div class="campo">
+                    <label for="cel">Celular</label>
+                    <input type="number" placeholder = "ddd + dígitos" required>
+                </div>
+                <div class="campo">
+                    <label for="email">Email</label>
+                    <input placeholder="name@example.com" type="email" name="email" id="email" required>
+                </div>
+            </fieldset>
+            
+            
+       
+        <fieldset class="grupo">
+            <br>
+                <h2>Documentos</h2>
+            <br>
+            <div class="campo">      
+                <header>Indentidade</header>
+                <input type="number" placeholder="Somente números"/>
+            </div>
+
+            <div class = "campo">
+                <header>CPF</header>
+                <input type="number" placeholder="Somente números" id ="cpf_dado" required>
+            </div>
+            <div class="campo">
+                <header>Você possui habilitação?</header>
+                <select>
+                    <option selected disabled value=""></option>
+                    <option>Sim</option>
+                    <option>Não</option>
+            </select>
+            </div>
+            <div class="campo">
+                <header>Você possui veículo próprio?</header>
+                <select>
+                <option required selected disabled value=""></option>
+                    <option>Sim</option>
+                    <option>Não</option>
+                </select>
+            </div>
+        </fieldset>      
+
+        </form>
+
+        <br>
+        <br>
+         <button class="botao" type="submit" onsubmit="">Concluído</button> 
+    </body>
+
+</html>
